@@ -1,1 +1,56 @@
-<html><body><h1>GRN Coin Bot</h1></body></html>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRN Coin Clicker</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #coin-counter {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #click-button {
+            padding: 20px 40px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>GRN Coin Clicker</h1>
+    <div id="coin-counter">Монет: 0</div>
+    <button id="click-button">Фармити монети</button>
+
+    <script>
+        let coins = 0;
+
+        document.getElementById('click-button').addEventListener('click', () => {
+            coins++;
+            document.getElementById('coin-counter').innerText = `Монет: ${coins}`;
+
+            // Відправка даних до бота через Telegram WebApp API
+            Telegram.WebApp.sendData(JSON.stringify({ coins }));
+        });
+
+        // Telegram Web App готовий до використання
+        Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
